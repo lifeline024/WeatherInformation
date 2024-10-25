@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="dateTimeDisplay"></div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">WeatherInformation</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                <li><a href="#features" onclick="showSection('features')">Features</a></li>
+                <li><a href="#data" onclick="showSection('data')">Live Data</a></li>
+                <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero active">
+        <div class="hero-content container"><br>
+            <h1>Get Real-Time Weather Information</h1>
+            <p>Monitor weather in real-time with IoT technology</p>
+            <a href="#data" class="btn" onclick="showSection('data')">Check Live Data</a>
+        </div>
+        <div class="video-frame">
+            <video src="cutmvid.mp4" autoplay muted loop class="hero-video"></video>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="features" style="display: none;"><br>
+        <h2>𝙰𝚋𝚘𝚞𝚝 𝚝𝚑𝚎 𝚆𝚎𝚊𝚝𝚑𝚎𝚛 𝙼𝚘𝚗𝚒𝚝𝚘𝚛𝚒𝚗𝚐 𝚂𝚢𝚜𝚝𝚎𝚖</h2>
+        <p>This IoT-based weather monitoring system collects real-time meteorological data, including temperature, humidity, and more, using various sensors. It provides users with up-to-the-minute weather updates through a user-friendly interface.</p>
+    
+        <!-- Component Requirements -->
+        <h3>Component Requirements</h3>
+        <ul>
+            <li><strong>Microcontroller:</strong> ESP8266</li>
+            <li><strong>Sensors:</strong>
+                <ul>
+                    <li>Rain Sensor (YL-83)</li>
+                    <li>Humidity/Temperature Sensor (DHT-11)</li>
+                    <li>Pressure Sensor (BMP-180)</li>
+                    <li>LDR Sensor</li>
+                </ul>
+            </li>
+            <li><strong>Power Supply:</strong> Battery</li>
+            <li><strong>Cloud Platform:</strong> ThingSpeak</li>
+            <li><strong>User Interface:</strong> Mobile App / Web Dashboard</li>
+            <li><strong>Other:</strong> Connecting Wires</li>
+        </ul>
+    
+        <!-- Block Diagram -->
+        <h3>Block Diagram</h3>
+        <p>The system connects multiple sensors, including the BMP180, DHT11, YL-83, and LDR sensors, to a microcontroller (ESP8266) powered by a battery. Data is transmitted to the ThingSpeak mobile app via cloud integration for real-time visualization.</p>
+        <img src="diagram.png" alt="Block-Diagram" width="65%">
+        <!-- Working Principle -->
+        <h3>Working Principle</h3>
+        <ul>
+            <li><strong>Data Collection:</strong> Sensors collect real-time data (e.g., temperature, humidity, pressure, wind speed) at regular intervals.</li>
+            <li><strong>Data Processing:</strong> The microcontroller processes the raw data, formats it, and removes any noise or errors.</li>
+            <li><strong>Data Transmission:</strong> The processed data is sent to the cloud using Wi-Fi or other protocols like HTTP or MQTT.</li>
+            <li><strong>Cloud Storage & Processing:</strong> Data is stored in a cloud platform (like ThingSpeak) and can be processed for further insights.</li>
+            <li><strong>Data Visualization:</strong> Users can view real-time data on a web or mobile app, with visual dashboards showing trends and historical data.</li>
+        </ul>
+    
+        <!-- Circuit Diagram -->
+        <h3>Circuit Diagram</h3>
+        <p>The system utilizes an ESP8266 microcontroller connected to various sensors (YL-83, DHT-11, BMP-180, LDR) and powered by a battery. Data is transmitted wirelessly to the cloud for remote access.</p>
+        <img src="circuit.png" alt="Circuit -Diagram" width="65%">
+    </section>
+
+
+    <!-- Live Data Section -->
+    <section id="data" class="live-data" style="display: none;">
+        <div class="container">
+            <h2>Live Data</h2>
+            <div class="data-grid">
+                <div class="data-box">
+                    <h3>Temperature</h3>
+                    <div class="data-value" id="temperature">--</div>
+                    <p>°C</p>
+                </div>
+                <div class="data-box">
+                    <h3>Humidity</h3>
+                    <div class="data-value" id="humidity">--</div>
+                    <p>%</p>
+                </div>
+                <div class="data-box">
+                    <h3>Rain Detection</h3>
+                    <div class="data-value" id="rain">--</div>
+                    <p>mm</p>
+                </div>
+                <div class="data-box">
+                    <h3>Pressure</h3>
+                    <div class="data-value" id="pressure">--</div>
+                    <p>mmHg</p>
+                </div>
+                <div class="data-box">
+                    <h3>Light</h3>
+                    <div class="data-value" id="light">--</div>
+                    <p>lx</p>
+                </div>
+            </div>
+        </div>
+        <a href="back.html">Go to Previous Data</a>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact" style="display: none;">
+        <div class="container">
+            <h2>ᴍᴇᴇᴛ ᴏᴜʀ ᴅᴇᴠᴇʟᴏᴘᴇʀs</h2>
+            <div class="developer-cards">
+                
+                <!-- Developer 1: Aayush Raj -->
+                <div class="developer-card">
+                    <img src="987.jpg" alt="Aayush Raj" class="developer-image">
+                    <h3>Aayush Raj</h3>
+                    <p>Role: Project Manager</p>
+                    <p>Aayush lead the development, designing a responsive web interface to display real-time weather data and integrating IoT components.</p>
+                    <div class="social-media">
+                        <a href="https://linkedin.com/in/lifeline024" target="_blank">LinkedIn</a> |
+                        <a href="https://github.com/lifeline024" target="_blank">GitHub</a>
+                    </div>
+                </div>
+        
+                <!-- Developer 2: Sushant Kumar -->
+                <div class="developer-card">
+                    <img src="1234.jpg" alt="Sushant Kumar" class="developer-image">
+                    <h3>Sushant Kumar</h3>
+                    <p>Role: IOT Hardware Specialist</p>
+                    <p>Sushant focuses on Integrates and configures sensors for data collection using microcontrollers.</p>
+                    <div class="social-media">
+                        <a href="https://linkedin.com/in/sushant8271" target="_blank">LinkedIn</a> |
+                        <a href="https://github.com/sushantkr23" target="_blank">GitHub</a>
+                    </div>
+                </div>
+        
+                <!-- Developer 3: Hariom Kumar -->
+                <div class="developer-card">
+                    <img src="hariom.png" alt="Hariom Kumar" class="developer-image">
+                    <h3>Hariom Kumar</h3>
+                    <p>Role: Frontend & Backend Developer</p>
+                    <p>Hariom specializes in creating intuitive and responsive user interfaces for seamless user experience and also Specialist on Backend.</p>
+                    <div class="social-media">
+                        <a href="https://linkedin.com/in/hariom-kumar-258444289" target="_blank">LinkedIn</a> |
+                        <a href="https://github.com/hariomsoni08" target="_blank">GitHub</a>
+                    </div>
+                </div>
+        
+                <!-- Developer 4: Abhishek Kumar -->
+                <div class="developer-card">
+                    <img src="abhi.jpg" alt="Abhishek Kumar" class="developer-image">
+                    <h3>Abhishek Kumar</h3>
+                    <p>Role: Software Designer</p>
+                    <p>Abhishek is good in the Designing the interface of Project.</p>
+                    <div class="social-media">
+                        <a href="#" target="_blank">LinkedIn</a> |
+                        <a href="#" target="_blank">GitHub</a>
+                    </div>
+                </div>
+        
+                <!-- Developer 5: Raushan Kumar -->
+                <div class="developer-card">
+                    <img src="raushan.jpg" alt="Raushan Kumar" class="developer-image">
+                    <h3>Raushan Kumar</h3>
+                    <p>Role: Project designer</p>
+                    <p>Raushan create a Project report and the Designing the project hardware.</p>
+                    <div class="social-media">
+                        <a href="https://linkedin.com/in/raushan-kumar-b0bb72334" target="_blank">LinkedIn</a> |
+                        <a href="#" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h2>Contact Us</h2>
+            <p>Have questions? Contact us at:</p>
+            <p>Email: support@weatherinfo.com | Phone: +1 234 567 890</p>
+        </div>
+    </footer>
+
+    <script>
+        // Replace with your ThingSpeak Channel ID and Read API Key
+        const channelId = '2680124'; // Replace with your ThingSpeak Channel ID
+        const readApiKey = 'YOUR_READ_API_KEY'; // Replace with your ThingSpeak Read API Key
+    
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`https://api.thingspeak.com/channels/${2680124}/feeds.json?api_key=${readApiKey}&results=1`);
+                const data = await response.json();
+    
+                // Assuming field1 is for Temperature, field2 for Humidity,
+                // field3 for Pressure, field4 for Light, and field5 for Rain
+                const temperature = data.feeds[0].field1;
+                const humidity = data.feeds[0].field2;
+                const pressure = data.feeds[0].field3;
+                const light = data.feeds[0].field4;
+                const rain = data.feeds[0].field5;
+    
+                document.getElementById("temperature").innerHTML = temperature || '--';
+                document.getElementById("humidity").innerHTML = humidity || '--';
+                document.getElementById("pressure").innerHTML = pressure || '--';
+                document.getElementById("light").innerHTML = light || '--';
+                document.getElementById("rain").innerHTML = rain || '--';
+            } catch (error) {
+                console.error("Error fetching data from ThingSpeak:", error);
+            }
+        };
+    
+        setInterval(fetchData, 10000); // Fetch every 10 seconds
+        fetchData(); // Initial fetch when page loads
+
+        // Toggle Navigation Menu for Mobile
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Show Section Functionality
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('header, section, footer');
+            sections.forEach(section => {
+                section.style.display = 'none'; // Hide all sections
+            });
+
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block'; // Show the selected section
+            }
+        }
+
+        // Initial Section Display
+        showSection('home'); // Show the home section on page load
+
+        // Hide all sections when clicking outside the navbar
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.navbar');
+            const navLinks = document.getElementById('navLinks');
+
+            // Check if the clicked element is not the navbar or its children
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active'); // Close the mobile menu
+            }
+        });
+
+         function updateDateTime() {
+                const now = new Date();
+                
+                // Format date as DD-MM-YYYY
+                const date = now.toLocaleDateString('en-GB');
+                
+                // Format time as HH:MM:SS
+                const time = now.toLocaleTimeString('en-GB');
+    
+                // Display date and time
+                document.getElementById('dateTimeDisplay').innerText = `Date: ${date} | Time: ${time}`;
+            }
+    
+            // Update the date and time immediately and then every second
+            updateDateTime();
+            setInterval(updateDateTime, 1000);  // Update every 1000 milliseconds (1 second)
+    </script>
+</body>
+</html>
