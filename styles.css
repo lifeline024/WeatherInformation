@@ -89,6 +89,7 @@ h1, h2, h3 {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
+    margin-left: 50px;
 }
 
 /* Hero Section */
@@ -457,3 +458,4 @@ a{
     object-fit: cover; /* Keeps image within container without stretching */
     border-radius: 10px; /* Optional: aligns with container border */
 }
+
